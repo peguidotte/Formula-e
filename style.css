@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+:root {
+    --cor-preta-container: #0E0C0F;
+    --cor-branca: #D9D9D9;
+    --cor-cinza: #6B6A6A;
+    --cor-cinza-background: #181718;
+    --cor-azul-claro: #6ED5F4;
+    --cor-azul: #3BA4C4;
+    --cor-azul-escuro: #005E77;
+    --montserrat: 'Montserrat', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--cor-cinza-background);
+    font-family: var(--montserrat);
+    margin: 10px;
+}
+
+.container {
+    display: flex;
+    gap: 5px;
+    height: 100vh;
+}
+
+.sidebar {
+    color: var(--cor-azul-claro);
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-nav, .sidebar-perfil, .sidebar-menu, .sidebar {
+    box-sizing: border-box;
+}
+
+.sidebar-menu {
+    background-color: var(--cor-preta-container);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+
+.sidebar-nav {
+    background-color: var(--cor-preta-container);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+    padding:5% 0% 10% 20%;
+    gap: 10px;
+}
+
+.sidebar-nav div {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 20px;
+    cursor: pointer;
+}
+
+.sidebar-nav-item {
+    font-weight: bold;
+    font-size: 1.75rem;
+}
+
+.dropdown-container {
+    display: none; /* para ver como ficará após o uso do js no botão troque o "none" por flex */
+    flex-direction: column;
+    padding-left: 20%;
+}
+
+.dropdown-btn span {
+    font-size: 1rem;
+}
+
+.dropdown-item {
+    font-size: 1.25rem;
+    font-weight: semi-bold;
+    cursor: pointer;
+    color: var(--cor-azul);
+}
+
+.sidebar-perfil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    gap: 30px;
+    padding: 10% 10% 10px 10%;
+    height: 100%;
+    border-radius: 10px;
+    background-color: var(--cor-preta-container);
+}
+
+.sidebar-perfil p {
+    font-size: 1rem;
+    font-weight: semi-bold;
+    color: var(--cor-cinza);
+}
+
+
+.topbar {
+    background-color: var(--cor-preta-container);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+}

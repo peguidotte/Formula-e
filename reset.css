@@ -1,0 +1,64 @@
+/* Reset CSS */
+
+/* Box sizing */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Reset menu styles */
+nav,
+ul,
+li {
+    margin: 0;
+    padding: 0;
+}
+
+/* Remove default margin and padding */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+/* Remove list styles */
+ol,
+ul {
+    list-style: none;
+}
+
+/* Remove default anchor styles */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Reset form elements */
+button,
+input,
+select,
+textarea {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: none;
+    font-family: inherit;
+}
+button {
+    all: unset;
+}
+
+/* Reset images */
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}

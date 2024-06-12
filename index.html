@@ -1,148 +1,83 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exemplo de Tela com Dropdown no Menu Lateral</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-
-        .container {
-            display: flex;
-            height: 100vh;
-        }
-
-        .sidebar {
-            width: 200px;
-            background-color: #333;
-            color: white;
-            padding: 15px;
-            box-sizing: border-box;
-        }
-
-        .sidebar a {
-            color: white;
-            text-decoration: none;
-            display: block;
-            padding: 10px;
-        }
-
-        .sidebar .dropdown-btn {
-            cursor: pointer;
-            padding: 10px;
-            color: white;
-            border: none;
-            background: none;
-            width: 100%;
-            text-align: left;
-            outline: none;
-        }
-
-        .sidebar .dropdown-container {
-            display: none;
-            background-color: #444;
-            padding-left: 20px;
-        }
-
-        .sidebar .dropdown-container a {
-            padding: 10px;
-            display: block;
-        }
-
-        .main-content {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .topbar {
-            background-color: #444;
-            color: white;
-            padding: 10px 20px;
-        }
-
-        .tabs {
-            display: flex;
-            background-color: #555;
-        }
-
-        .tabs button {
-            flex-grow: 1;
-            padding: 10px;
-            background-color: #555;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-        .tabs button:hover {
-            background-color: #666;
-        }
-
-        .tabs button.active {
-            background-color: #777;
-        }
-
-        .tab-content {
-            flex-grow: 1;
-            padding: 20px;
-            background-color: #f1f1f1;
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        .logo {
-            height: 100px;
-            margin: auto;
-        }
-    </style>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
     <div class="container">
         <div class="sidebar">
-            <div style="width: 100%;text-align: center;">
-                <img src="images/logo.png" class="logo" />
+            <div class="sidebar-menu">
+                <img src="images/Logo_F-E.svg" class="logo" alt="Logo da Formula E">
+                <button class="menu-btn"><img src="./icons/menu_open.png" alt=""></button>
             </div>
-            <a href="#">Inicio</a>
-            <button class="dropdown-btn">Link 2
-                <span>▼</span>
-            </button>
-            <div class="dropdown-container">
-                <a href="#">Opção 2.1</a>
-                <a href="#">Opção 2.2</a>
-                <a href="#">Opção 2.3</a>
-            </div>
-            <a href="#">Link 3</a>
-            <button class="dropdown-btn">Link 4
-                <span>▼</span>
-            </button>
-            <div class="dropdown-container">
-                <a href="#">Opção 4.1</a>
-                <a href="#">Opção 4.2</a>
-                <a href="#">Opção 4.3</a>
-            </div>
+            <nav class="sidebar-nav">
+                <div>
+                    <img class="sidebar-nav-icon" src="./icons/home.png" alt="">
+                    <a class="sidebar-nav-item" href="#">Inicio</a>
+                </div>
+                <div>
+                    <img class="sidebar-nav-icon" src="./icons/trophy.svg" alt="">
+                    <button class="sidebar-nav-item dropdown-btn">Classificação
+                        <span>▼</span>
+                    </button>
+                </div>
+                <nav class="dropdown-container">
+                    <a href="#" class="dropdown-item">Geral</a>
+                    <a href="#" class="dropdown-item">Corridas</a>
+                </nav>
+                <div>
+                    <img src="./icons/groups_3.svg" alt="">
+                    <button class="sidebar-nav-item dropdown-btn">Equipes
+                        <span>▼</span>
+                    </button>
+                </div>
+                <nav class="dropdown-container">
+                    <a class="dropdown-item" href="#">Seguindo</a>
+                    <a class="dropdown-item" href="#">Top 3</a>
+                    <a class="dropdown-item" href="#">Todas</a>
+                </nav>
+                <div>
+                    <img src="./icons/person_raised_hand.svg" alt="">
+                    <a class="sidebar-nav-item" href="#">Nós</a>
+                </div>
+            </nav>
+            <section class="sidebar-perfil">
+                <h2>Meu Perfil</h2>
+                <p>Informações do Perfil vão
+                    aparecer aqui após criar conta</p>
+                </section>
         </div>
-        <div class="main-content">
+        <main class="main-content">
             <div class="topbar">
-                <h1 style="text-transform: uppercase;">Crie Sua conta <span style="font-size: 14px;font-weight: 200;"> E
+                <h1 style="text-transform: uppercase;">Crie Sua conta <span> E
                         INTERAJA COM A <br>
                         MELHOR COMUNIDADE DE CORRIDAS DO MUNDO!</span></h1>
+                <a href="#" class="login-link"><img src="./icons/login.svg" alt="Login"></a>
             </div>
-            <div style="padding: 40px;">
+            <nav class="main-content-nav feed">
+                <ul class="feed-list">
+                    <li class="feed-list-item" data-feed="official">Oficial</li>
+                    <li class="feed-list-item" data-feed="foryou">Para você</li>
+                    <li class="feed-list-item" data-feed="following">Seguindo</li>
+                    <li class="feed-list-item" data-feed="teams">Equipes</li>
+                    <li class="feed-list-item" data-feed="athletes">Atletas</li>
+                    <li class="feed-list-item" data-feed="communities">Comunidades</li>
+                </ul>
+            </nav>
+            <!--Não alterei nada nessa parte-->
+            <div style="padding: 10px;">
                 <div class="tabs">
                     <button class="tablink" onclick="openTab(event, 'Tab1')">Tab 1</button>
-                    <button class="tablink" onclick="openTab(event, 'Tab2')">Tab 2</button>                    
+                    <button class="tablink" onclick="openTab(event, 'Tab2')">Tab 2</button>
                 </div>
-                <div id="Tab1" class="tab-content">                    
+                <div id="Tab1" class="tab-content">
                     <div id="listaPost">
 
                     </div>
@@ -162,9 +97,16 @@
 
                         <button type="submit">cadastrar</button>
                     </form>
-                </div>                
+                </div>
             </div>
-        </div>
+            <nav class="choose-content-nav">
+                <ul class="choose-content-list">
+                    <li class="choose-content-list-item"><img src="./icons/Icon_F-E.svg" alt="Feed"></li>
+                    <li class="choose-content-list-item"><img src="./icons/Youtube_Live.svg" alt="Stream"></li>
+                    <li class="choose-content-list-item"><img src="./icons/Chat_Room.svg" alt="Mensagens"></li>
+                </ul>
+            </nav>
+        </main>
     </div>
 
     <script>
@@ -211,7 +153,7 @@
         const postList = document.getElementById('listaPost');
 
         function loadPosts() {
-            if(localStorage.getItem('posts').length != 0){
+            if (localStorage.getItem('posts').length != 0) {
                 const posts = JSON.parse(localStorage.getItem('posts'));
                 console.log(posts)
                 posts.forEach(post => {
@@ -219,58 +161,57 @@
                         <p>${post.title}</p>
                         <p>${post.content}</p>
                         `
-                        post.images.forEach(image => {
-                            inner += `<img src="${image}" >`
-                        });
+                    post.images.forEach(image => {
+                        inner += `<img src="${image}" >`
+                    });
                     inner += `</div>`
                     postList.innerHTML += inner
-                });                
+                });
             }
         }
 
         loadPosts();
 
         postForm.addEventListener('submit', function (event) {
-                event.preventDefault();
+            event.preventDefault();
 
-                const title = postTitle.value.trim();
-                const content = postContent.value.trim();
-                const files = Array.from(postImage.files);
+            const title = postTitle.value.trim();
+            const content = postContent.value.trim();
+            const files = Array.from(postImage.files);
 
-                if (title && content && files.length > 0) {
-                    const imagePromises = files.map(file => {
-                        return new Promise((resolve, reject) => {
-                            const reader = new FileReader();
-                            reader.onload = function (e) {
-                                resolve(e.target.result);
-                            };
-                            reader.onerror = reject;
-                            reader.readAsDataURL(file);
-                        });
+            if (title && content && files.length > 0) {
+                const imagePromises = files.map(file => {
+                    return new Promise((resolve, reject) => {
+                        const reader = new FileReader();
+                        reader.onload = function (e) {
+                            resolve(e.target.result);
+                        };
+                        reader.onerror = reject;
+                        reader.readAsDataURL(file);
                     });
+                });
 
-                    Promise.all(imagePromises).then(images => {
-                        
-                        var posts = [];
-                        if (localStorage.getItem('posts').length != 0)
-                        {
-                            var posts = JSON.parse(localStorage.getItem('posts')) || [];
-                        }
-                        posts.push({ title, content, images });
-                        localStorage.setItem('posts', JSON.stringify(posts));
+                Promise.all(imagePromises).then(images => {
 
-                        postTitle.value = '';
-                        postContent.value = '';
-                        postImages.value = '';
+                    var posts = [];
+                    if (localStorage.getItem('posts').length != 0) {
+                        var posts = JSON.parse(localStorage.getItem('posts')) || [];
+                    }
+                    posts.push({ title, content, images });
+                    localStorage.setItem('posts', JSON.stringify(posts));
 
-                        loadPosts();
+                    postTitle.value = '';
+                    postContent.value = '';
+                    postImages.value = '';
+
+                    loadPosts();
 
 
-                    }).catch(error => {
-                        console.error('Erro ao ler as imagens:', error);
-                    });
-                }
-            });
+                }).catch(error => {
+                    console.error('Erro ao ler as imagens:', error);
+                });
+            }
+        });
 
 
     </script>
