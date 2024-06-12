@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo de Tela com Dropdown no Menu Lateral</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .sidebar {
+            width: 200px;
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+        }
+
+        .sidebar .dropdown-btn {
+            cursor: pointer;
+            padding: 10px;
+            color: white;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+            outline: none;
+        }
+
+        .sidebar .dropdown-container {
+            display: none;
+            background-color: #444;
+            padding-left: 20px;
+        }
+
+        .sidebar .dropdown-container a {
+            padding: 10px;
+            display: block;
+        }
+
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .topbar {
+            background-color: #444;
+            color: white;
+            padding: 10px 20px;
+        }
+
+        .tabs {
+            display: flex;
+            background-color: #555;
+        }
+
+        .tabs button {
+            flex-grow: 1;
+            padding: 10px;
+            background-color: #555;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .tabs button:hover {
+            background-color: #666;
+        }
+
+        .tabs button.active {
+            background-color: #777;
+        }
+
+        .tab-content {
+            flex-grow: 1;
+            padding: 20px;
+            background-color: #f1f1f1;
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .logo {
+            height: 100px;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="sidebar">
+            <div style="width: 100%;text-align: center;">
+                <img src="images/logo.png" class="logo" />
+            </div>
+            <a href="#">Inicio</a>
+            <button class="dropdown-btn">Link 2
+                <span>▼</span>
+            </button>
+            <div class="dropdown-container">
+                <a href="#">Opção 2.1</a>
+                <a href="#">Opção 2.2</a>
+                <a href="#">Opção 2.3</a>
+            </div>
+            <a href="#">Link 3</a>
+            <button class="dropdown-btn">Link 4
+                <span>▼</span>
+            </button>
+            <div class="dropdown-container">
+                <a href="#">Opção 4.1</a>
+                <a href="#">Opção 4.2</a>
+                <a href="#">Opção 4.3</a>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="topbar">
+                <h1 style="text-transform: uppercase;">Crie Sua conta <span style="font-size: 14px;font-weight: 200;"> E
+                        INTERAJA COM A <br>
+                        MELHOR COMUNIDADE DE CORRIDAS DO MUNDO!</span></h1>
+            </div>
+            <div style="padding: 40px;">
+                <div class="tabs">
+                    <button class="tablink" onclick="openTab(event, 'Tab1')">Tab 1</button>
+                    <button class="tablink" onclick="openTab(event, 'Tab2')">Tab 2</button>                    
+                </div>
+                <div id="Tab1" class="tab-content">                    
+                    <div id="listaPost">
+
+                    </div>
+                </div>
+                <div id="Tab2" class="tab-content">
+                    <h3>Adicionar</h3>
+                    <form id="postForm">
+
+                        <label for="postTitle">Título:</label><br>
+                        <input type="text" id="postTitle" required><br><br>
+
+                        <label for="postContent">Texto:</label><br>
+                        <textarea id="postContent" rows="4" cols="50" required></textarea><br><br>
+
+                        <label for="postImage">Imagem:</label><br>
+                        <input type="file" id="postImage" accept="image/*" required multiple><br><br>
+
+                        <button type="submit">cadastrar</button>
+                    </form>
+                </div>                
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+                tabcontent[i].classList.remove("active");
+            }
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            document.getElementById(tabName).style.display = "block";
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+        // Ativar a primeira aba por padrão
+        document.getElementsByClassName("tablink")[0].click();
+
+        // Dropdown menu script
+        var dropdown = document.getElementsByClassName("dropdown-btn");
+        var i;
+        for (i = 0; i < dropdown.length; i++) {
+            dropdown[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var dropdownContent = this.nextElementSibling;
+                if (dropdownContent.style.display === "block") {
+                    dropdownContent.style.display = "none";
+                } else {
+                    dropdownContent.style.display = "block";
+                }
+            });
+        }
+
+
+        const postForm = document.getElementById('postForm');
+
+        const postTitle = document.getElementById('postTitle');
+        const postContent = document.getElementById('postContent');
+        const postImage = document.getElementById('postImage');
+
+        const postList = document.getElementById('listaPost');
+
+        function loadPosts() {
+            if(localStorage.getItem('posts').length != 0){
+                const posts = JSON.parse(localStorage.getItem('posts'));
+                console.log(posts)
+                posts.forEach(post => {
+                    var inner = `<div>
+                        <p>${post.title}</p>
+                        <p>${post.content}</p>
+                        `
+                        post.images.forEach(image => {
+                            inner += `<img src="${image}" >`
+                        });
+                    inner += `</div>`
+                    postList.innerHTML += inner
+                });                
+            }
+        }
+
+        loadPosts();
+
+        postForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                const title = postTitle.value.trim();
+                const content = postContent.value.trim();
+                const files = Array.from(postImage.files);
+
+                if (title && content && files.length > 0) {
+                    const imagePromises = files.map(file => {
+                        return new Promise((resolve, reject) => {
+                            const reader = new FileReader();
+                            reader.onload = function (e) {
+                                resolve(e.target.result);
+                            };
+                            reader.onerror = reject;
+                            reader.readAsDataURL(file);
+                        });
+                    });
+
+                    Promise.all(imagePromises).then(images => {
+                        
+                        var posts = [];
+                        if (localStorage.getItem('posts').length != 0)
+                        {
+                            var posts = JSON.parse(localStorage.getItem('posts')) || [];
+                        }
+                        posts.push({ title, content, images });
+                        localStorage.setItem('posts', JSON.stringify(posts));
+
+                        postTitle.value = '';
+                        postContent.value = '';
+                        postImages.value = '';
+
+                        loadPosts();
+
+
+                    }).catch(error => {
+                        console.error('Erro ao ler as imagens:', error);
+                    });
+                }
+            });
+
+
+    </script>
+
+</body>
+
+</html>
