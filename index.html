@@ -52,169 +52,170 @@
                 <h2>Meu Perfil</h2>
                 <p>Informações do Perfil vão
                     aparecer aqui após criar conta</p>
-                </section>
+            </section>
         </div>
-        <main class="main-content">
+        <div class="mainbar">
             <div class="topbar">
                 <h1 style="text-transform: uppercase;">Crie Sua conta <span> E
                         INTERAJA COM A <br>
                         MELHOR COMUNIDADE DE CORRIDAS DO MUNDO!</span></h1>
                 <a href="#" class="login-link"><img src="./icons/login.svg" alt="Login"></a>
             </div>
-            <nav class="main-content-nav feed">
-                <ul class="feed-list">
-                    <li class="feed-list-item" data-feed="official">Oficial</li>
-                    <li class="feed-list-item" data-feed="foryou">Para você</li>
-                    <li class="feed-list-item" data-feed="following">Seguindo</li>
-                    <li class="feed-list-item" data-feed="teams">Equipes</li>
-                    <li class="feed-list-item" data-feed="athletes">Atletas</li>
-                    <li class="feed-list-item" data-feed="communities">Comunidades</li>
-                </ul>
-            </nav>
-            <!--Não alterei nada nessa parte-->
-            <div style="padding: 10px;">
-                <div class="tabs">
-                    <button class="tablink" onclick="openTab(event, 'Tab1')">Tab 1</button>
-                    <button class="tablink" onclick="openTab(event, 'Tab2')">Tab 2</button>
-                </div>
-                <div id="Tab1" class="tab-content">
-                    <div id="listaPost">
+            <main class="main-content">
+                <nav class="main-content-nav feed">
+                    <ul class="feed-list">
+                        <li class="feed-list-item" data-feed="official">Oficial</li>
+                        <li class="feed-list-item" data-feed="foryou">Para você</li>
+                        <li class="feed-list-item" data-feed="following">Seguindo</li>
+                        <li class="feed-list-item" data-feed="teams">Equipes</li>
+                        <li class="feed-list-item" data-feed="athletes">Atletas</li>
+                        <li class="feed-list-item" data-feed="communities">Comunidades</li>
+                    </ul>
+                </nav>
+                <!--Não alterei nada nessa parte-->
+                <div style="padding: 10px;">
+                    <div class="tabs">
+                        <button class="tablink" onclick="openTab(event, 'Tab1')">Tab 1</button>
+                        <button class="tablink" onclick="openTab(event, 'Tab2')">Tab 2</button>
+                    </div>
+                    <div id="Tab1" class="tab-content">
+                        <div id="listaPost">
 
+                        </div>
+                    </div>
+                    <div id="Tab2" class="tab-content">
+                        <h3>Adicionar</h3>
+                        <form id="postForm">
+
+                            <label for="postTitle">Título:</label><br>
+                            <input type="text" id="postTitle" required><br><br>
+
+                            <label for="postContent">Texto:</label><br>
+                            <textarea id="postContent" rows="4" cols="50" required></textarea><br><br>
+
+                            <label for="postImage">Imagem:</label><br>
+                            <input type="file" id="postImage" accept="image/*" required multiple><br><br>
+
+                            <button type="submit">cadastrar</button>
+                        </form>
                     </div>
                 </div>
-                <div id="Tab2" class="tab-content">
-                    <h3>Adicionar</h3>
-                    <form id="postForm">
-
-                        <label for="postTitle">Título:</label><br>
-                        <input type="text" id="postTitle" required><br><br>
-
-                        <label for="postContent">Texto:</label><br>
-                        <textarea id="postContent" rows="4" cols="50" required></textarea><br><br>
-
-                        <label for="postImage">Imagem:</label><br>
-                        <input type="file" id="postImage" accept="image/*" required multiple><br><br>
-
-                        <button type="submit">cadastrar</button>
-                    </form>
-                </div>
-            </div>
-            <nav class="choose-content-nav">
-                <ul class="choose-content-list">
-                    <li class="choose-content-list-item"><img src="./icons/Icon_F-E.svg" alt="Feed"></li>
-                    <li class="choose-content-list-item"><img src="./icons/Youtube_Live.svg" alt="Stream"></li>
-                    <li class="choose-content-list-item"><img src="./icons/Chat_Room.svg" alt="Mensagens"></li>
-                </ul>
-            </nav>
-        </main>
+                <nav class="choose-content-nav">
+                    <ul class="choose-content-list">
+                        <li class="choose-content-list-item"><img src="./icons/Icon_F-E.svg" alt="Feed"></li>
+                        <li class="choose-content-list-item"><img src="./icons/Youtube_Live.svg" alt="Stream"></li>
+                        <li class="choose-content-list-item"><img src="./icons/Chat_Room.svg" alt="Mensagens"></li>
+                    </ul>
+                </nav>
+            </main>
+        </div>
     </div>
-
-    <script>
-        function openTab(evt, tabName) {
-            var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
-                tabcontent[i].classList.remove("active");
-            }
-            tablinks = document.getElementsByClassName("tablink");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].classList.remove("active");
-            }
-            document.getElementById(tabName).style.display = "block";
-            document.getElementById(tabName).classList.add("active");
-            evt.currentTarget.classList.add("active");
-        }
-        // Ativar a primeira aba por padrão
-        document.getElementsByClassName("tablink")[0].click();
-
-        // Dropdown menu script
-        var dropdown = document.getElementsByClassName("dropdown-btn");
-        var i;
-        for (i = 0; i < dropdown.length; i++) {
-            dropdown[i].addEventListener("click", function () {
-                this.classList.toggle("active");
-                var dropdownContent = this.nextElementSibling;
-                if (dropdownContent.style.display === "block") {
-                    dropdownContent.style.display = "none";
-                } else {
-                    dropdownContent.style.display = "block";
+        <script>
+            function openTab(evt, tabName) {
+                var i, tabcontent, tablinks;
+                tabcontent = document.getElementsByClassName("tab-content");
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                    tabcontent[i].classList.remove("active");
                 }
-            });
-        }
+                tablinks = document.getElementsByClassName("tablink");
+                for (i = 0; i < tablinks.length; i++) {
+                    tablinks[i].classList.remove("active");
+                }
+                document.getElementById(tabName).style.display = "block";
+                document.getElementById(tabName).classList.add("active");
+                evt.currentTarget.classList.add("active");
+            }
+            // Ativar a primeira aba por padrão
+            document.getElementsByClassName("tablink")[0].click();
+
+            // Dropdown menu script
+            var dropdown = document.getElementsByClassName("dropdown-btn");
+            var i;
+            for (i = 0; i < dropdown.length; i++) {
+                dropdown[i].addEventListener("click", function () {
+                    this.classList.toggle("active");
+                    var dropdownContent = this.nextElementSibling;
+                    if (dropdownContent.style.display === "block") {
+                        dropdownContent.style.display = "none";
+                    } else {
+                        dropdownContent.style.display = "block";
+                    }
+                });
+            }
 
 
-        const postForm = document.getElementById('postForm');
+            const postForm = document.getElementById('postForm');
 
-        const postTitle = document.getElementById('postTitle');
-        const postContent = document.getElementById('postContent');
-        const postImage = document.getElementById('postImage');
+            const postTitle = document.getElementById('postTitle');
+            const postContent = document.getElementById('postContent');
+            const postImage = document.getElementById('postImage');
 
-        const postList = document.getElementById('listaPost');
+            const postList = document.getElementById('listaPost');
 
-        function loadPosts() {
-            if (localStorage.getItem('posts').length != 0) {
-                const posts = JSON.parse(localStorage.getItem('posts'));
-                console.log(posts)
-                posts.forEach(post => {
-                    var inner = `<div>
+            function loadPosts() {
+                if (localStorage.getItem('posts').length != 0) {
+                    const posts = JSON.parse(localStorage.getItem('posts'));
+                    console.log(posts)
+                    posts.forEach(post => {
+                        var inner = `<div>
                         <p>${post.title}</p>
                         <p>${post.content}</p>
                         `
-                    post.images.forEach(image => {
-                        inner += `<img src="${image}" >`
+                        post.images.forEach(image => {
+                            inner += `<img src="${image}" >`
+                        });
+                        inner += `</div>`
+                        postList.innerHTML += inner
                     });
-                    inner += `</div>`
-                    postList.innerHTML += inner
-                });
+                }
             }
-        }
 
-        loadPosts();
+            loadPosts();
 
-        postForm.addEventListener('submit', function (event) {
-            event.preventDefault();
+            postForm.addEventListener('submit', function (event) {
+                event.preventDefault();
 
-            const title = postTitle.value.trim();
-            const content = postContent.value.trim();
-            const files = Array.from(postImage.files);
+                const title = postTitle.value.trim();
+                const content = postContent.value.trim();
+                const files = Array.from(postImage.files);
 
-            if (title && content && files.length > 0) {
-                const imagePromises = files.map(file => {
-                    return new Promise((resolve, reject) => {
-                        const reader = new FileReader();
-                        reader.onload = function (e) {
-                            resolve(e.target.result);
-                        };
-                        reader.onerror = reject;
-                        reader.readAsDataURL(file);
+                if (title && content && files.length > 0) {
+                    const imagePromises = files.map(file => {
+                        return new Promise((resolve, reject) => {
+                            const reader = new FileReader();
+                            reader.onload = function (e) {
+                                resolve(e.target.result);
+                            };
+                            reader.onerror = reject;
+                            reader.readAsDataURL(file);
+                        });
                     });
-                });
 
-                Promise.all(imagePromises).then(images => {
+                    Promise.all(imagePromises).then(images => {
 
-                    var posts = [];
-                    if (localStorage.getItem('posts').length != 0) {
-                        var posts = JSON.parse(localStorage.getItem('posts')) || [];
-                    }
-                    posts.push({ title, content, images });
-                    localStorage.setItem('posts', JSON.stringify(posts));
+                        var posts = [];
+                        if (localStorage.getItem('posts').length != 0) {
+                            var posts = JSON.parse(localStorage.getItem('posts')) || [];
+                        }
+                        posts.push({ title, content, images });
+                        localStorage.setItem('posts', JSON.stringify(posts));
 
-                    postTitle.value = '';
-                    postContent.value = '';
-                    postImages.value = '';
+                        postTitle.value = '';
+                        postContent.value = '';
+                        postImages.value = '';
 
-                    loadPosts();
-
-
-                }).catch(error => {
-                    console.error('Erro ao ler as imagens:', error);
-                });
-            }
-        });
+                        loadPosts();
 
 
-    </script>
+                    }).catch(error => {
+                        console.error('Erro ao ler as imagens:', error);
+                    });
+                }
+            });
+
+
+        </script>
 
 </body>
 

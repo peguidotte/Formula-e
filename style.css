@@ -108,9 +108,57 @@ body {
 
 .topbar {
     background-color: var(--cor-preta-container);
+    border-radius: 10px;
+    width: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
+    gap: 30px;
+    padding: 25px 80px;
     box-sizing: border-box;
+    border: var(--cor-azul-claro) 1px solid;
+    color: var(--cor-branca);
+}
+
+.topbar h1 span {
+    color: var(--cor-cinza);
+    font-size: 1.5rem;
+}
+
+.main-content {
+    background-color: var(--cor-preta-container);
+    border-radius: 10px;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 90px;
+    padding: 10px;
+    flex-grow: 1;
+}
+
+.feed-list {
+    display: flex;
+    gap: 2.5rem;
+    padding-top: 10px;
+    font-size: 1.25rem;
+    font-weight: semi-bold;
+    color: var(--cor-cinza);
+}
+
+.feed-list-item:hover {
+    color: var(--cor-branca);
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.choose-content-list {
+    display: flex;
+    align-items: center;
+    gap: 6.25rem;
+    padding-top: 10px;
+}
+
+.choose-content-list-item {
+   
 }
