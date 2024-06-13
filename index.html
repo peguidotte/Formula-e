@@ -61,22 +61,15 @@
                         MELHOR COMUNIDADE DE CORRIDAS DO MUNDO!</span></h1>
                 <a href="#" class="login-link"><img src="./icons/login.svg" alt="Login"></a>
             </div>
-            <main class="main-content">
-                <nav class="main-content-nav feed">
-                    <ul class="feed-list">
-                        <li class="feed-list-item" data-feed="official">Oficial</li>
-                        <li class="feed-list-item" data-feed="foryou">Para você</li>
-                        <li class="feed-list-item" data-feed="following">Seguindo</li>
-                        <li class="feed-list-item" data-feed="teams">Equipes</li>
-                        <li class="feed-list-item" data-feed="athletes">Atletas</li>
-                        <li class="feed-list-item" data-feed="communities">Comunidades</li>
-                    </ul>
-                </nav>
-                <!--Não alterei nada nessa parte-->
+            <main class="main-content">                      
                 <div style="padding: 10px;">
-                    <div class="tabs">
-                        <button class="tablink" onclick="openTab(event, 'Tab1')">Tab 1</button>
-                        <button class="tablink" onclick="openTab(event, 'Tab2')">Tab 2</button>
+                    <div class="feed-list tabs" style="padding-bottom: 50px;">
+                        <button class="feed-list-item tablink" onclick="openTab(event, 'Tab1')">Posts</button>
+                        <button class="feed-list-item tablink" onclick="openTab(event, 'Tab2')">Postar</button>                        
+                        <button class="feed-list-item tablink" onclick="openTab(event, 'Tab2')">Seguindo</button>
+                        <button class="feed-list-item tablink" onclick="openTab(event, 'Tab2')">Equipes</button>
+                        <button class="feed-list-item tablink" onclick="openTab(event, 'Tab2')">Atletas</button>
+                        <button class="feed-list-item tablink" onclick="openTab(event, 'Tab2')">Comunidades</button>
                     </div>
                     <div id="Tab1" class="tab-content">
                         <div id="listaPost">
@@ -94,9 +87,10 @@
                             <textarea id="postContent" rows="4" cols="50" required></textarea><br><br>
 
                             <label for="postImage">Imagem:</label><br>
-                            <input type="file" id="postImage" accept="image/*" required multiple><br><br>
+                            <input type="text" id="postImage" required><br><br>
 
                             <button type="submit">cadastrar</button>
+
                         </form>
                     </div>
                 </div>
@@ -110,112 +104,93 @@
             </main>
         </div>
     </div>
-        <script>
-            function openTab(evt, tabName) {
-                var i, tabcontent, tablinks;
-                tabcontent = document.getElementsByClassName("tab-content");
-                for (i = 0; i < tabcontent.length; i++) {
-                    tabcontent[i].style.display = "none";
-                    tabcontent[i].classList.remove("active");
-                }
-                tablinks = document.getElementsByClassName("tablink");
-                for (i = 0; i < tablinks.length; i++) {
-                    tablinks[i].classList.remove("active");
-                }
-                document.getElementById(tabName).style.display = "block";
-                document.getElementById(tabName).classList.add("active");
-                evt.currentTarget.classList.add("active");
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+                tabcontent[i].classList.remove("active");
             }
-            // Ativar a primeira aba por padrão
-            document.getElementsByClassName("tablink")[0].click();
-
-            // Dropdown menu script
-            var dropdown = document.getElementsByClassName("dropdown-btn");
-            var i;
-            for (i = 0; i < dropdown.length; i++) {
-                dropdown[i].addEventListener("click", function () {
-                    this.classList.toggle("active");
-                    var dropdownContent = this.nextElementSibling;
-                    if (dropdownContent.style.display === "block") {
-                        dropdownContent.style.display = "none";
-                    } else {
-                        dropdownContent.style.display = "block";
-                    }
-                });
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
             }
+            document.getElementById(tabName).style.display = "block";
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+        // Ativar a primeira aba por padrão
+        document.getElementsByClassName("tablink")[0].click();
 
-
-            const postForm = document.getElementById('postForm');
-
-            const postTitle = document.getElementById('postTitle');
-            const postContent = document.getElementById('postContent');
-            const postImage = document.getElementById('postImage');
-
-            const postList = document.getElementById('listaPost');
-
-            function loadPosts() {
-                if (localStorage.getItem('posts').length != 0) {
-                    const posts = JSON.parse(localStorage.getItem('posts'));
-                    console.log(posts)
-                    posts.forEach(post => {
-                        var inner = `<div>
-                        <p>${post.title}</p>
-                        <p>${post.content}</p>
-                        `
-                        post.images.forEach(image => {
-                            inner += `<img src="${image}" >`
-                        });
-                        inner += `</div>`
-                        postList.innerHTML += inner
-                    });
-                }
-            }
-
-            loadPosts();
-
-            postForm.addEventListener('submit', function (event) {
-                event.preventDefault();
-
-                const title = postTitle.value.trim();
-                const content = postContent.value.trim();
-                const files = Array.from(postImage.files);
-
-                if (title && content && files.length > 0) {
-                    const imagePromises = files.map(file => {
-                        return new Promise((resolve, reject) => {
-                            const reader = new FileReader();
-                            reader.onload = function (e) {
-                                resolve(e.target.result);
-                            };
-                            reader.onerror = reject;
-                            reader.readAsDataURL(file);
-                        });
-                    });
-
-                    Promise.all(imagePromises).then(images => {
-
-                        var posts = [];
-                        if (localStorage.getItem('posts').length != 0) {
-                            var posts = JSON.parse(localStorage.getItem('posts')) || [];
-                        }
-                        posts.push({ title, content, images });
-                        localStorage.setItem('posts', JSON.stringify(posts));
-
-                        postTitle.value = '';
-                        postContent.value = '';
-                        postImages.value = '';
-
-                        loadPosts();
-
-
-                    }).catch(error => {
-                        console.error('Erro ao ler as imagens:', error);
-                    });
+        // Dropdown menu script
+        var dropdown = document.getElementsByClassName("dropdown-btn");
+        var i;
+        for (i = 0; i < dropdown.length; i++) {
+            dropdown[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var dropdownContent = this.nextElementSibling;
+                if (dropdownContent.style.display === "block") {
+                    dropdownContent.style.display = "none";
+                } else {
+                    dropdownContent.style.display = "block";
                 }
             });
+        }
+        
+        const postForm = document.getElementById('postForm');
+
+        const postTitle = document.getElementById('postTitle');
+        const postContent = document.getElementById('postContent');
+        const postImage = document.getElementById('postImage');
+
+        const postList = document.getElementById('listaPost');
+
+        function loadPosts() {
+            if (localStorage.getItem('posts').length != 0) {
+                const posts = JSON.parse(localStorage.getItem('posts'));
+                console.log(posts)
+                posts.forEach(post => {
+                    var inner = `<div class="post">
+                        <img src="${post.files}" ></div>
+                        <p>${post.title}</p>
+                        <p>${post.content}</p>                        
+                        `
+                    postList.innerHTML += inner
+                });
+            }
+        }
+
+        loadPosts();
+
+        postForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const title = postTitle.value.trim();
+            const content = postContent.value.trim();
+            const files = postImage.value.trim();
+
+            if (title && content && files.length > 0) {
+
+                var posts = [];
+                if (localStorage.getItem('posts').length != 0) {
+                    var posts = JSON.parse(localStorage.getItem('posts'));
+                }
+
+                posts.push({ title, content, files });
+                localStorage.setItem('posts', JSON.stringify(posts));
+
+                postTitle.value = '';
+                postContent.value = '';
+                files.value = '';
+
+                loadPosts();
+
+            }
+        });
 
 
-        </script>
+    </script>
 
 </body>
 
