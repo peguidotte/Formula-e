@@ -72,25 +72,16 @@
                         <button class="feed-list-item tablink" onclick="openTab(event, 'Tab6')">Comunidades</button>
                     </div>
                     <div id="Tab1" class="tab-content">
-                        <div id="listaPost" style="display: flex;justify-content: flex-start;align-items: center;grid-gap: 15px;flex-flow: wrap;">
+                        <div id="listaPost" style="display: flex;justify-content: space-between;align-items: center;flex-flow: wrap;">
 
                         </div>
                     </div>
-                    <div id="Tab2" class="tab-content">
-                        <h3>Adicionar</h3>
-                        <form id="postForm">
-
-                            <label for="postTitle">Título:</label><br>
-                            <input type="text" id="postTitle" required><br><br>
-
-                            <label for="postContent">Texto:</label><br>
-                            <textarea id="postContent" rows="4" cols="50" required></textarea><br><br>
-
-                            <label for="postImage">Imagem:</label><br>
-                            <input type="text" id="postImage" required><br><br>
-
-                            <button type="submit">cadastrar</button>
-
+                    <div id="Tab2" class="tab-content">                        
+                        <form id="postForm" style="text-align: center;">
+                            <input type="text" id="postTitle" placeholder="Titulo" required><br><br>
+                            <textarea id="postContent" rows="4" cols="50" required placeholder="Texto"></textarea><br><br>
+                            <input type="text" id="postImage" required placeholder="Imagem"><br><br>
+                            <button type="submit" class="botaoEnvia">cadastrar</button>
                         </form>
                     </div>
                 </div>

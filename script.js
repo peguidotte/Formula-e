@@ -45,9 +45,9 @@ function loadPosts() {
         const posts = JSON.parse(localStorage.getItem('posts'));
         console.log(posts)
         posts.forEach(post => {
-            var inner = `<div class="post" style="background: #505050;width: auto;float: left;padding: 20px;border-radius: 22px;">
-                <div style="background: url('${post.files}');width: 200px;height: 200px;background-size: cover;background-position: center;"></div>
-                <p style="font-size: 20px;font-weight: bold;margin-bottom: 10px;margin-top: 8px;">${post.title}</p>
+            var inner = `<div class="post" >
+                <div style="background: url('${post.files}')" class="postImage"></div>
+                <p class="postTitle">${post.title}</p>
                 <p>${post.content}</p>    
                 </div>                    
                 `
