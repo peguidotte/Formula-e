@@ -66,13 +66,13 @@
                     <div class="feed-list tabs" style="padding-bottom: 50px;">
                         <button class="feed-list-item tablink" onclick="openTab(event, 'Tab1')">Posts</button>
                         <button class="feed-list-item tablink" onclick="openTab(event, 'Tab2')">Postar</button>                        
-                        <button class="feed-list-item tablink" onclick="openTab(event, 'Tab2')">Seguindo</button>
-                        <button class="feed-list-item tablink" onclick="openTab(event, 'Tab2')">Equipes</button>
-                        <button class="feed-list-item tablink" onclick="openTab(event, 'Tab2')">Atletas</button>
-                        <button class="feed-list-item tablink" onclick="openTab(event, 'Tab2')">Comunidades</button>
+                        <button class="feed-list-item tablink" onclick="openTab(event, 'Tab3')">Seguindo</button>
+                        <button class="feed-list-item tablink" onclick="openTab(event, 'Tab4')">Equipes</button>
+                        <button class="feed-list-item tablink" onclick="openTab(event, 'Tab5')">Atletas</button>
+                        <button class="feed-list-item tablink" onclick="openTab(event, 'Tab6')">Comunidades</button>
                     </div>
                     <div id="Tab1" class="tab-content">
-                        <div id="listaPost">
+                        <div id="listaPost" style="display: flex;justify-content: flex-start;align-items: center;grid-gap: 15px;flex-flow: wrap;">
 
                         </div>
                     </div>
@@ -104,93 +104,12 @@
             </main>
         </div>
     </div>
-    <script>
-        function openTab(evt, tabName) {
-            var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
-                tabcontent[i].classList.remove("active");
-            }
-            tablinks = document.getElementsByClassName("tablink");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].classList.remove("active");
-            }
-            document.getElementById(tabName).style.display = "block";
-            document.getElementById(tabName).classList.add("active");
-            evt.currentTarget.classList.add("active");
-        }
-        // Ativar a primeira aba por padrão
-        document.getElementsByClassName("tablink")[0].click();
 
-        // Dropdown menu script
-        var dropdown = document.getElementsByClassName("dropdown-btn");
-        var i;
-        for (i = 0; i < dropdown.length; i++) {
-            dropdown[i].addEventListener("click", function () {
-                this.classList.toggle("active");
-                var dropdownContent = this.nextElementSibling;
-                if (dropdownContent.style.display === "block") {
-                    dropdownContent.style.display = "none";
-                } else {
-                    dropdownContent.style.display = "block";
-                }
-            });
-        }
-        
-        const postForm = document.getElementById('postForm');
+    <div id="Cadastrado" style="position: absolute;z-index: 9999;top: 40px;right: 40px;background: #28a745;padding: 30px;display: none;border-radius: 12px;">
+        <p style="font-size: 20px;font-weight: bold;">Cadastrado com sucesso</p>
+    </div>
 
-        const postTitle = document.getElementById('postTitle');
-        const postContent = document.getElementById('postContent');
-        const postImage = document.getElementById('postImage');
-
-        const postList = document.getElementById('listaPost');
-
-        function loadPosts() {
-            if (localStorage.getItem('posts').length != 0) {
-                const posts = JSON.parse(localStorage.getItem('posts'));
-                console.log(posts)
-                posts.forEach(post => {
-                    var inner = `<div class="post">
-                        <img src="${post.files}" ></div>
-                        <p>${post.title}</p>
-                        <p>${post.content}</p>                        
-                        `
-                    postList.innerHTML += inner
-                });
-            }
-        }
-
-        loadPosts();
-
-        postForm.addEventListener('submit', function (event) {
-            event.preventDefault();
-
-            const title = postTitle.value.trim();
-            const content = postContent.value.trim();
-            const files = postImage.value.trim();
-
-            if (title && content && files.length > 0) {
-
-                var posts = [];
-                if (localStorage.getItem('posts').length != 0) {
-                    var posts = JSON.parse(localStorage.getItem('posts'));
-                }
-
-                posts.push({ title, content, files });
-                localStorage.setItem('posts', JSON.stringify(posts));
-
-                postTitle.value = '';
-                postContent.value = '';
-                files.value = '';
-
-                loadPosts();
-
-            }
-        });
-
-
-    </script>
+    <script src="script.js"></script>
 
 </body>
 
