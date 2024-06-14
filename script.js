@@ -44,6 +44,7 @@ function loadPosts() {
     if (localStorage.getItem('posts').length != 0) {
         const posts = JSON.parse(localStorage.getItem('posts'));
         console.log(posts)
+        postList.innerHTML = ""
         posts.forEach(post => {
             var inner = `<div class="post" >
                 <div style="background: url('${post.files}')" class="postImage"></div>
