@@ -34,7 +34,10 @@ body {
     flex-direction: column;
 }
 
-.sidebar-nav, .sidebar-perfil, .sidebar-menu, .sidebar {
+.sidebar-nav,
+.sidebar-perfil,
+.sidebar-menu,
+.sidebar {
     box-sizing: border-box;
 }
 
@@ -52,8 +55,8 @@ body {
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    align-items:flex-start;
-    padding:5% 0% 10% 20%;
+    align-items: flex-start;
+    padding: 5% 0% 10% 20%;
     gap: 10px;
 }
 
@@ -71,7 +74,8 @@ body {
 }
 
 .dropdown-container {
-    display: none; /* para ver como ficará após o uso do js no botão troque o "none" por flex */
+    display: none;
+    /* para ver como ficará após o uso do js no botão troque o "none" por flex */
     flex-direction: column;
     padding-left: 20%;
 }
@@ -126,6 +130,64 @@ body {
     font-size: 1.5rem;
 }
 
+
+#loginBtn:hover {
+    cursor: pointer;
+    filter: brightness(1.7);
+    transform: scale(1.1);
+    transition: 0.5s;
+}
+
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.close {
+    cursor: pointer;
+    color: var(--cor-azul-escuro);
+    transition: 0.5s;
+    font-size: 1.5rem;
+}
+
+.close:hover {
+    color: var(--cor-azul-claro);
+    transition: 0.5s;
+}
+
+.modal-content {
+    background-color: var(--cor-preta-container);
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid var(--cor-azul-claro);
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#emailLoginForm {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 10px;
+    background-color: var(--cor-preta-container);
+}
+
+#ingressarConta:hover {
+    cursor: pointer;
+    background-color: var(--cor-cinza-background);
+    transition: 0.5s;
+}
+
 .main-content {
     width: 122%;
     height: 82.5%;
@@ -135,7 +197,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content:space-between;
+    justify-content: space-between;
     padding: 10px 10px 20px 10px;
     flex-grow: 1;
 }
@@ -162,48 +224,63 @@ body {
     padding-top: 10px;
 }
 
-input, textarea{
+input,
+textarea, select {
     width: 100%;
     font-size: 15px;
     padding: 10px 15px;
-    color: #fff;
+    color: var(--cor-branca);
     background: transparent;
-    border: 2px solid #fff;
+    border: 2px solid var(--cor-branca);
     border-radius: 12px;
 }
 
-.botaoEnvia{
+select{
+    color: var(--cor-cinza);
+    background-color:var(--cor-preta-container);
+}
+
+.botaoEnvia {
     background: var(--cor-azul);
     padding: 10px 25px;
-    color: #fff;
+    color: var(--cor-branca);
     border-radius: 8px;
     cursor: pointer;
 }
 
-.post-container{
-    display: flex;
-    flex-wrap: wrap;
+
+.post-container {
+    display: block;
     gap: 20px;
     box-sizing: border-box;
+    max-height: 52vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--cor-azul-claro) var(--cor-preta-container);
 }
 
-.post{
+.post-container::-webkit-scrollbar-thumb:hover {
+    background: var(--cor-cinza);
+}
+
+.post {
     box-sizing: border-box;
     background: var(--cor-cinza-background);
-    width: 100%;
+    width: 700px;
     padding: 20px;
     border-radius: 22px;
     margin-bottom: 20px;
+    word-wrap: break-word;
 }
 
-.postImage{
+.postImage {
     width: 100%;
     height: 200px;
     background-size: cover;
     background-position: center;
 }
 
-.postTitle{
+.postTitle {
     max-width: calc(100% - 40px);
     font-size: 20px;
     font-weight: bold;
@@ -212,13 +289,13 @@ input, textarea{
     color: var(--cor-azul)
 }
 
-.postContent{
+.postContent {
     max-width: calc(100% - 40px);
     font-size: 15px;
     color: var(--cor-cinza);
 }
 
-.removePost{
+.removePost {
     background: var(--cor-azul-escuro);
     padding: 5px 10px;
     color: #fff;
@@ -228,7 +305,7 @@ input, textarea{
     transition: 0.5s;
 }
 
-.removePost:hover{
+.removePost:hover {
     background: var(--cor-azul-claro);
     transition: 0.5s;
 }

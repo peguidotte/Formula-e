@@ -1,43 +1,29 @@
-function openTab(evt, tabName) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tab-content");
-    for (i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
-        tabcontent[i].classList.remove("active");
-    }
-    tablinks = document.getElementsByClassName("tablink");
-    for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].classList.remove("active");
-    }
-    document.getElementById(tabName).style.display = "block";
-    document.getElementById(tabName).classList.add("active");
-    evt.currentTarget.classList.add("active");
-}
-// Ativar a primeira aba por padrão
-document.getElementsByClassName("tablink")[0].click();
+//Login
+var modal = document.getElementById("loginModal");
+var btn = document.getElementById("loginBtn");
+var span = document.getElementsByClassName("close")[0];
 
-// Dropdown menu script
-var dropdown = document.getElementsByClassName("dropdown-btn");
-var i;
-for (i = 0; i < dropdown.length; i++) {
-    dropdown[i].addEventListener("click", function () {
-        this.classList.toggle("active");
-        var dropdownContent = this.nextElementSibling;
-        if (dropdownContent.style.display === "block") {
-            dropdownContent.style.display = "none";
-        } else {
-            dropdownContent.style.display = "block";
-        }
-    });
+btn.onclick = function() {
+    modal.style.display = "block";
 }
+
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+//Posts
 
 const postForm = document.getElementById('postForm');
-
 const postTitle = document.getElementById('postTitle');
 const postContent = document.getElementById('postContent');
 const postImage = document.getElementById('postImage');
 const alertSuceesso = document.getElementById('Cadastrado')
-
 const postList = document.getElementById('listaPost');
 
 function loadPosts() {
@@ -107,3 +93,26 @@ postForm.addEventListener('submit', function (event) {
         loadPosts();
     }
 });
+
+
+function openTab(evt, tabName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tab-content");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+        tabcontent[i].classList.remove("active");
+    }
+    tablinks = document.getElementsByClassName("tablink");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].classList.remove("active");
+    }
+    document.getElementById(tabName).style.display = "block";
+    document.getElementById(tabName).classList.add("active");
+    evt.currentTarget.classList.add("active");
+}
+// Ativar a primeira aba por padrão
+document.getElementsByClassName("tablink")[0].click();
+
+// Dropdown menu script
+
+

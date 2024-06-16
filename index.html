@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exemplo de Tela com Dropdown no Menu Lateral</title>
+    <title>E-PitStop</title>
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -59,12 +59,37 @@
                 <h1 style="text-transform: uppercase;">Crie Sua conta <span> E
                         INTERAJA COM A <br>
                         MELHOR COMUNIDADE DE CORRIDAS DO MUNDO!</span></h1>
-                <a href="#" class="login-link"><img src="./icons/login.svg" alt="Login"></a>
+                <button id="loginBtn" autofocus onclick="loginBtn" ><img src="./icons/login.svg" alt="Login"></button>
+                <div id="loginModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <h2>Crie sua conta!</h2>
+                        <form id="emailLoginForm">
+                            <input type="name" id="name" placeholder="Nome da conta" required>
+                            <select id="options" required>
+                                <option value="" id="optionsDisabled" disabled selected>Escolha sua equipe</option>
+                                <option value="Cupra">ABT Cupra Team</option>
+                                <option value="Andretti">Andretti</option>
+                                <option value="Penske">DS Penske</option>
+                                <option value="Envision">Envision Racing</option>
+                                <option value="ERT">ERT Team</option>
+                                <option value="Jaguar">Jaguar TCS Racing</option>
+                                <option value="Mahindra">Mahindra Racing</option>
+                                <option value="Maserati">Maserati MSG Racing</option>
+                                <option value="Mclaren">NEOM Mclaren Team</option>
+                                <option value="Nissan">Nissan Team</option>
+                                <option value="Porshe">Tag Heuer Porshe Team</option>
+                            <input type="email" id="email" placeholder="Email" required>
+                            <input type="password" id="password" placeholder="Password" minlength="5" required>
+                            <input type="submit" id="ingressarConta" value="Ingressar">
+                        </form>
+                    </div>
+                </div>
             </div>
             <main class="main-content">                      
                 <div style="padding: 10px;">
                     <div class="feed-list tabs" style="padding-bottom: 50px;">
-                        <button class="feed-list-item tablink" onclick="openTab(event, 'Tab1')">Posts</button>
+                        <button class="feed-list-item tablink" onclick="openTab(event, 'Tab1')">Meus posts</button>
                         <button class="feed-list-item tablink" onclick="openTab(event, 'Tab2')">Postar</button>                        
                         <button class="feed-list-item tablink" onclick="openTab(event, 'Tab3')">Seguindo</button>
                         <button class="feed-list-item tablink" onclick="openTab(event, 'Tab4')">Equipes</button>
