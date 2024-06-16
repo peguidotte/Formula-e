@@ -115,4 +115,15 @@ document.getElementsByClassName("tablink")[0].click();
 
 // Dropdown menu script
 
+function toggleDropdown(buttonId, containerId) {
+    const dropdownBtn = document.getElementById(buttonId);
+    const dropdownContainer = document.getElementById(containerId);
+
+    dropdownBtn.addEventListener('click', () => {
+        dropdownContainer.style.display = dropdownContainer.style.display === 'none' ? 'flex' : 'none';
+    });
+}
+
+toggleDropdown('dropdown-btn-class', 'dropdown-container-class');
+toggleDropdown('dropdown-btn-equipes', 'dropdown-container-equipes');
 
