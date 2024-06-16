@@ -41,39 +41,57 @@ const alertSuceesso = document.getElementById('Cadastrado')
 const postList = document.getElementById('listaPost');
 
 function loadPosts() {
-    if (localStorage.getItem('posts').length != 0) {
+    if (localStorage.getItem('posts') && localStorage.getItem('posts').length != 0) {
         const posts = JSON.parse(localStorage.getItem('posts'));
         console.log(posts)
         postList.innerHTML = ""
-        posts.forEach(post => {
+        var postContainer = document.createElement('div');
+        postContainer.className = 'post-container';
+        posts.forEach((post, index) => {
+            var imageHTML = post.image ? `<div style="background: url('${post.image}')" class="postImage"></div>` : '';
             var inner = `<div class="post" >
-                <div style="background: url('${post.files}')" class="postImage"></div>
                 <p class="postTitle">${post.title}</p>
-                <p>${post.content}</p>    
+                <p class="postContent">${post.content}</p>
+                ${imageHTML}
+                <button class="removePost" data-index="${index}">Remove Post</button>    
                 </div>                    
                 `
-            postList.innerHTML += inner
+            postContainer.innerHTML += inner
+        });
+        postList.appendChild(postContainer);
+        document.querySelectorAll('.removePost').forEach(button => {
+            button.addEventListener('click', removePost);
         });
     }
 }
 
-loadPosts();
+function removePost(event) {
+    const index = event.target.getAttribute('data-index');
+    var posts = JSON.parse(localStorage.getItem('posts'));
+    posts.splice(index, 1);
+    localStorage.setItem('posts', JSON.stringify(posts));
+    loadPosts();
+}
 
 postForm.addEventListener('submit', function (event) {
     event.preventDefault();
 
     const title = postTitle.value.trim();
     const content = postContent.value.trim();
-    const files = postImage.value.trim();
+    const image = postImage.value.trim();
 
-    if (title && content && files.length > 0) {
-
+    if (title && content) {
         var posts = [];
-        if (localStorage.getItem('posts').length != 0) {
+        if (localStorage.getItem('posts') && localStorage.getItem('posts').length != 0) {
             var posts = JSON.parse(localStorage.getItem('posts'));
         }
 
-        posts.push({ title, content, files });
+        const post = { title, content };
+        if (image) {
+            post.image = image;
+        }
+
+        posts.push(post);
         localStorage.setItem('posts', JSON.stringify(posts));
 
         alertSuceesso.style.display = "block"
@@ -84,9 +102,8 @@ postForm.addEventListener('submit', function (event) {
 
         postTitle.value = '';
         postContent.value = '';
-        files.value = '';
+        postImage.value = '';
 
         loadPosts();
-
     }
 });
