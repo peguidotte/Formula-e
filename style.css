@@ -114,7 +114,7 @@ body {
 .topbar {
     background-color: var(--cor-preta-container);
     border-radius: 10px;
-    width: 122%;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -189,7 +189,7 @@ body {
 }
 
 .main-content {
-    width: 122%;
+    width: 100%;
     height: 82.5%;
     background-color: var(--cor-preta-container);
     border-radius: 10px;

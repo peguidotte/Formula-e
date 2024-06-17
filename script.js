@@ -122,6 +122,8 @@ function toggleDropdown(buttonId, containerId) {
 toggleDropdown('dropdown-btn-class', 'dropdown-container-class');
 toggleDropdown('dropdown-btn-equipes', 'dropdown-container-equipes');
 
+var contadorPropaganda = 0
+
 const FormLogin = document.getElementById("emailLoginForm")
 FormLogin.addEventListener('submit', function (event) {
     event.preventDefault();
@@ -132,6 +134,8 @@ FormLogin.addEventListener('submit', function (event) {
     const equipes = document.getElementById("equipes")
     const infoPerfil = document.getElementById("infoPerfil")
     const semLogin = document.getElementById("semLogin")
+    const topoTexto = document.getElementById("topoTexto")
+    const propaganda = document.getElementById("propaganda")
 
     console.log(nome.value,email.value,senha.value,equipes.value)
 
@@ -140,4 +144,11 @@ FormLogin.addEventListener('submit', function (event) {
     infoPerfil.innerHTML = `<p>Nome: ${nome.value}</p><p>Equipe: ${equipes.value}</p>`
     semLogin.style.display = "none"
     postForm.style.display = "block"
+    topoTexto.style.display = "none"
+    propaganda.style.display = "block"
+
+    setInterval(() => {
+        contadorPropaganda += 1
+        propaganda.src = contadorPropaganda%2 == 0 ? "images/banner1.jpg" : "images/banner2.jpg"
+    }, 2000);
 });
