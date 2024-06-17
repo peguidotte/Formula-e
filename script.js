@@ -146,9 +146,10 @@ FormLogin.addEventListener('submit', function (event) {
     postForm.style.display = "block"
     topoTexto.style.display = "none"
     propaganda.style.display = "block"
+    propaganda.style.height = "150px"
 
     setInterval(() => {
         contadorPropaganda += 1
-        propaganda.src = contadorPropaganda%2 == 0 ? "images/banner1.jpg" : "images/banner2.jpg"
+        propaganda.src = contadorPropaganda%2 == 0 ? "images/banner1.jpg" : "images/banner2.jpg";
     }, 2000);
 });
