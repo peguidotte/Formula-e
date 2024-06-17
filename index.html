@@ -50,8 +50,10 @@
             </nav>
             <section class="sidebar-perfil">
                 <h2>Meu Perfil</h2>
-                <p>Informações do Perfil vão
+                <div id="infoPerfil">
+                    <p>Informações do Perfil vão
                     aparecer aqui após criar conta</p>
+                </div>
             </section>
         </div>
         <div class="mainbar">
@@ -66,7 +68,7 @@
                         <h2>Crie sua conta!</h2>
                         <form id="emailLoginForm">
                             <input type="name" id="name" placeholder="Nome da conta" required>
-                            <select id="options" required>
+                            <select id="equipes" required>
                                 <option value="" id="optionsDisabled" disabled selected>Escolha sua equipe</option>
                                 <option value="Cupra">ABT Cupra Team</option>
                                 <option value="Andretti">Andretti</option>
@@ -102,7 +104,10 @@
                         </div>
                     </div>
                     <div id="Tab2" class="tab-content">                        
-                        <form id="postForm" style="text-align: center;">
+                        <div id="semLogin">
+                            <p style="text-align: center;font-size: 25px;color: #fff;font-weight: bold;">Faça login para poder cadastrar</p>
+                        </div>
+                        <form id="postForm" style="text-align: center;display: none;">
                             <input type="text" id="postTitle" placeholder="Titulo" required><br><br>
                             <textarea id="postContent" rows="4" cols="50" required placeholder="Texto"></textarea><br><br>
                             <input type="text" id="postImage" placeholder="Imagem"><br><br>

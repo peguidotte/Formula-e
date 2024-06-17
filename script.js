@@ -1,4 +1,3 @@
-//Login
 var modal = document.getElementById("loginModal");
 var btn = document.getElementById("loginBtn");
 var span = document.getElementsByClassName("close")[0];
@@ -16,8 +15,6 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
-
-//Posts
 
 const postForm = document.getElementById('postForm');
 const postTitle = document.getElementById('postTitle');
@@ -50,6 +47,7 @@ function loadPosts() {
         });
     }
 }
+loadPosts()
 
 function removePost(event) {
     const index = event.target.getAttribute('data-index');
@@ -110,10 +108,7 @@ function openTab(evt, tabName) {
     document.getElementById(tabName).classList.add("active");
     evt.currentTarget.classList.add("active");
 }
-// Ativar a primeira aba por padrão
 document.getElementsByClassName("tablink")[0].click();
-
-// Dropdown menu script
 
 function toggleDropdown(buttonId, containerId) {
     const dropdownBtn = document.getElementById(buttonId);
@@ -127,3 +122,22 @@ function toggleDropdown(buttonId, containerId) {
 toggleDropdown('dropdown-btn-class', 'dropdown-container-class');
 toggleDropdown('dropdown-btn-equipes', 'dropdown-container-equipes');
 
+const FormLogin = document.getElementById("emailLoginForm")
+FormLogin.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const nome = document.getElementById("name")
+    const email = document.getElementById("email")
+    const senha = document.getElementById("password")
+    const equipes = document.getElementById("equipes")
+    const infoPerfil = document.getElementById("infoPerfil")
+    const semLogin = document.getElementById("semLogin")
+
+    console.log(nome.value,email.value,senha.value,equipes.value)
+
+    modal.style.display = "none"
+    btn.style.display = "none"
+    infoPerfil.innerHTML = `<p>Nome: ${nome.value}</p><p>Equipe: ${equipes.value}</p>`
+    semLogin.style.display = "none"
+    postForm.style.display = "block"
+});
