@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>G7 trabalho formula-e </title>
+    <title>E-PitStop</title>
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -24,21 +24,21 @@
                 </div>
                 <div>
                     <img class="sidebar-nav-icon" src="./icons/trophy.svg" alt="">
-                    <button class="sidebar-nav-item dropdown-btn">Classificação
+                    <button class="sidebar-nav-item" id="dropdown-btn-class" >Classificação
                         <span>▼</span>
                     </button>
                 </div>
-                <nav class="dropdown-container">
+                <nav class="dropdown-container" id="dropdown-container-class">
                     <a href="#" class="dropdown-item">Geral</a>
                     <a href="#" class="dropdown-item">Corridas</a>
                 </nav>
                 <div>
                     <img src="./icons/groups_3.svg" alt="">
-                    <button class="sidebar-nav-item dropdown-btn">Equipes
+                    <button class="sidebar-nav-item" id="dropdown-btn-equipes" >Equipes
                         <span>▼</span>
                     </button>
                 </div>
-                <nav class="dropdown-container">
+                <nav class="dropdown-container" id="dropdown-container-equipes">
                     <a class="dropdown-item" href="#">Seguindo</a>
                     <a class="dropdown-item" href="#">Top 3</a>
                     <a class="dropdown-item" href="#">Todas</a>
@@ -50,21 +50,49 @@
             </nav>
             <section class="sidebar-perfil">
                 <h2>Meu Perfil</h2>
-                <p>Informações do Perfil vão
+                <div id="infoPerfil">
+                    <p>Informações do Perfil vão
                     aparecer aqui após criar conta</p>
+                </div>
             </section>
         </div>
         <div class="mainbar">
             <div class="topbar">
-                <h1 style="text-transform: uppercase;">Crie Sua conta <span> E
+                <img id="propaganda" src="images/banner1.jpg" style="width: 100%;max-width: 900px;display: none;" />
+                <h1 id="topoTexto" style="text-transform: uppercase;">Crie Sua conta <span> E
                         INTERAJA COM A <br>
                         MELHOR COMUNIDADE DE CORRIDAS DO MUNDO!</span></h1>
-                <a href="#" class="login-link"><img src="./icons/login.svg" alt="Login"></a>
+                <button id="loginBtn" autofocus onclick="loginBtn" ><img src="./icons/login.svg" alt="Login"></button>
+                <div id="loginModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <h2>Crie sua conta!</h2>
+                        <form id="emailLoginForm">
+                            <input type="name" id="name" placeholder="Nome da conta" required>
+                            <select id="equipes" required>
+                                <option value="" id="optionsDisabled" disabled selected>Escolha sua equipe</option>
+                                <option value="Cupra">ABT Cupra Team</option>
+                                <option value="Andretti">Andretti</option>
+                                <option value="Penske">DS Penske</option>
+                                <option value="Envision">Envision Racing</option>
+                                <option value="ERT">ERT Team</option>
+                                <option value="Jaguar">Jaguar TCS Racing</option>
+                                <option value="Mahindra">Mahindra Racing</option>
+                                <option value="Maserati">Maserati MSG Racing</option>
+                                <option value="Mclaren">NEOM Mclaren Team</option>
+                                <option value="Nissan">Nissan Team</option>
+                                <option value="Porshe">Tag Heuer Porshe Team</option>
+                            <input type="email" id="email" placeholder="Email" required>
+                            <input type="password" id="password" placeholder="Password" minlength="5" required>
+                            <input type="submit" id="ingressarConta" value="Ingressar">
+                        </form>
+                    </div>
+                </div>
             </div>
             <main class="main-content">                      
                 <div style="padding: 10px;">
                     <div class="feed-list tabs" style="padding-bottom: 50px;">
-                        <button class="feed-list-item tablink" onclick="openTab(event, 'Tab1')">Posts</button>
+                        <button class="feed-list-item tablink" onclick="openTab(event, 'Tab1')">Meus posts</button>
                         <button class="feed-list-item tablink" onclick="openTab(event, 'Tab2')">Postar</button>                        
                         <button class="feed-list-item tablink" onclick="openTab(event, 'Tab3')">Seguindo</button>
                         <button class="feed-list-item tablink" onclick="openTab(event, 'Tab4')">Equipes</button>
@@ -77,10 +105,13 @@
                         </div>
                     </div>
                     <div id="Tab2" class="tab-content">                        
-                        <form id="postForm" style="text-align: center;">
+                        <div id="semLogin">
+                            <p style="text-align: center;font-size: 25px;color: #fff;font-weight: bold;">Faça login para poder cadastrar</p>
+                        </div>
+                        <form id="postForm" style="text-align: center;display: none;">
                             <input type="text" id="postTitle" placeholder="Titulo" required><br><br>
                             <textarea id="postContent" rows="4" cols="50" required placeholder="Texto"></textarea><br><br>
-                            <input type="text" id="postImage" required placeholder="Imagem"><br><br>
+                            <input type="text" id="postImage" placeholder="Imagem"><br><br>
                             <button type="submit" class="botaoEnvia">cadastrar</button>
                         </form>
                     </div>

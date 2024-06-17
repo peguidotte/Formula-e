@@ -1,3 +1,98 @@
+var modal = document.getElementById("loginModal");
+var btn = document.getElementById("loginBtn");
+var span = document.getElementsByClassName("close")[0];
+
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+const postForm = document.getElementById('postForm');
+const postTitle = document.getElementById('postTitle');
+const postContent = document.getElementById('postContent');
+const postImage = document.getElementById('postImage');
+const alertSuceesso = document.getElementById('Cadastrado')
+const postList = document.getElementById('listaPost');
+
+function loadPosts() {
+    if (localStorage.getItem('posts') && localStorage.getItem('posts').length != 0) {
+        const posts = JSON.parse(localStorage.getItem('posts'));
+        console.log(posts)
+        postList.innerHTML = ""
+        var postContainer = document.createElement('div');
+        postContainer.className = 'post-container';
+        posts.forEach((post, index) => {
+            var imageHTML = post.image ? `<div style="background: url('${post.image}')" class="postImage"></div>` : '';
+            var inner = `<div class="post" >
+                <p class="postTitle">${post.title}</p>
+                <p class="postContent">${post.content}</p>
+                ${imageHTML}
+                <button class="removePost" data-index="${index}">Remove Post</button>    
+                </div>                    
+                `
+            postContainer.innerHTML += inner
+        });
+        postList.appendChild(postContainer);
+        document.querySelectorAll('.removePost').forEach(button => {
+            button.addEventListener('click', removePost);
+        });
+    }
+}
+loadPosts()
+
+function removePost(event) {
+    const index = event.target.getAttribute('data-index');
+    var posts = JSON.parse(localStorage.getItem('posts'));
+    posts.splice(index, 1);
+    localStorage.setItem('posts', JSON.stringify(posts));
+    loadPosts();
+}
+
+postForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const title = postTitle.value.trim();
+    const content = postContent.value.trim();
+    const image = postImage.value.trim();
+
+    if (title && content) {
+        var posts = [];
+        if (localStorage.getItem('posts') && localStorage.getItem('posts').length != 0) {
+            var posts = JSON.parse(localStorage.getItem('posts'));
+        }
+
+        const post = { title, content };
+        if (image) {
+            post.image = image;
+        }
+
+        posts.push(post);
+        localStorage.setItem('posts', JSON.stringify(posts));
+
+        alertSuceesso.style.display = "block"
+
+        setTimeout(() => {
+            alertSuceesso.style.display = "none"
+        },5000)
+
+        postTitle.value = '';
+        postContent.value = '';
+        postImage.value = '';
+
+        loadPosts();
+    }
+});
+
+
 function openTab(evt, tabName) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tab-content");
@@ -13,80 +108,47 @@ function openTab(evt, tabName) {
     document.getElementById(tabName).classList.add("active");
     evt.currentTarget.classList.add("active");
 }
-// Ativar a primeira aba por padrão
 document.getElementsByClassName("tablink")[0].click();
 
-// Dropdown menu script
-var dropdown = document.getElementsByClassName("dropdown-btn");
-var i;
-for (i = 0; i < dropdown.length; i++) {
-    dropdown[i].addEventListener("click", function () {
-        this.classList.toggle("active");
-        var dropdownContent = this.nextElementSibling;
-        if (dropdownContent.style.display === "block") {
-            dropdownContent.style.display = "none";
-        } else {
-            dropdownContent.style.display = "block";
-        }
+function toggleDropdown(buttonId, containerId) {
+    const dropdownBtn = document.getElementById(buttonId);
+    const dropdownContainer = document.getElementById(containerId);
+
+    dropdownBtn.addEventListener('click', () => {
+        dropdownContainer.style.display = dropdownContainer.style.display === 'none' ? 'flex' : 'none';
     });
 }
 
-const postForm = document.getElementById('postForm');
+toggleDropdown('dropdown-btn-class', 'dropdown-container-class');
+toggleDropdown('dropdown-btn-equipes', 'dropdown-container-equipes');
 
-const postTitle = document.getElementById('postTitle');
-const postContent = document.getElementById('postContent');
-const postImage = document.getElementById('postImage');
-const alertSuceesso = document.getElementById('Cadastrado')
+var contadorPropaganda = 0
 
-const postList = document.getElementById('listaPost');
-
-function loadPosts() {
-    if (localStorage.getItem('posts').length != 0) {
-        const posts = JSON.parse(localStorage.getItem('posts'));
-        console.log(posts)
-        postList.innerHTML = ""
-        posts.forEach(post => {
-            var inner = `<div class="post" >
-                <div style="background: url('${post.files}')" class="postImage"></div>
-                <p class="postTitle">${post.title}</p>
-                <p>${post.content}</p>    
-                </div>                    
-                `
-            postList.innerHTML += inner
-        });
-    }
-}
-
-loadPosts();
-
-postForm.addEventListener('submit', function (event) {
+const FormLogin = document.getElementById("emailLoginForm")
+FormLogin.addEventListener('submit', function (event) {
     event.preventDefault();
 
-    const title = postTitle.value.trim();
-    const content = postContent.value.trim();
-    const files = postImage.value.trim();
+    const nome = document.getElementById("name")
+    const email = document.getElementById("email")
+    const senha = document.getElementById("password")
+    const equipes = document.getElementById("equipes")
+    const infoPerfil = document.getElementById("infoPerfil")
+    const semLogin = document.getElementById("semLogin")
+    const topoTexto = document.getElementById("topoTexto")
+    const propaganda = document.getElementById("propaganda")
 
-    if (title && content && files.length > 0) {
+    console.log(nome.value,email.value,senha.value,equipes.value)
 
-        var posts = [];
-        if (localStorage.getItem('posts').length != 0) {
-            var posts = JSON.parse(localStorage.getItem('posts'));
-        }
+    modal.style.display = "none"
+    btn.style.display = "none"
+    infoPerfil.innerHTML = `<p>Nome: ${nome.value}</p><p>Equipe: ${equipes.value}</p>`
+    semLogin.style.display = "none"
+    postForm.style.display = "block"
+    topoTexto.style.display = "none"
+    propaganda.style.display = "block"
 
-        posts.push({ title, content, files });
-        localStorage.setItem('posts', JSON.stringify(posts));
-
-        alertSuceesso.style.display = "block"
-
-        setTimeout(() => {
-            alertSuceesso.style.display = "none"
-        },5000)
-
-        postTitle.value = '';
-        postContent.value = '';
-        files.value = '';
-
-        loadPosts();
-
-    }
+    setInterval(() => {
+        contadorPropaganda += 1
+        propaganda.src = contadorPropaganda%2 == 0 ? "images/banner1.jpg" : "images/banner2.jpg"
+    }, 2000);
 });
