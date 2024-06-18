@@ -15,6 +15,9 @@ Felipe Xavier (556931)
 
 ## Sobre o Projeto Geral:
 
+### Challenge 
+O projeto tem como base o challenge proposto pela Fiap e a empresa TECHMAHINDRA para a disciplina de Engenharia de Software. O desafio é que os alunos façam um site interativo, gamificado ou outros, afim de aumentar a visibilidade do esporte Formula-E. 
+
 ### Problema Abordado
 O problema que identificamos e que abordaremos será a falta de interatividade em sites e aplicativos relacionados a Formula E (Embora possuam diferenças notáveis em relação a outros esportes). Essa falta de interação dificulta a criação de uma comunidade online ativa, onde os fãs se sintam pertencentes à um grupo. Com isso a retenção de público é um desafio ainda maior, pois não existem incentivos além dos já propostos para o usuário virar um consumidor ativo.
 
